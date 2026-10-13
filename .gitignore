@@ -1,0 +1,16 @@
+# Entorno virtual de Python
+.venv/
+venv/
+
+# Configuracion de PyCharm
+.idea/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Archivos generados al ejecutar el script
+nombres aleatorios/
+
+# Archivos del sistema de macOS
+.DS_Store
