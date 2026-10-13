@@ -1,25 +1,25 @@
 import os
 import random
+import sys
 
 CARACTERES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%&-_+="
-
-CARPETA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "nombres aleatorios")
+LONGITUD = 8
 
 
 def generar_nombre():
     nombre = ""
-    for i in range(8):
+    for i in range(LONGITUD):
         nombre += random.choice(CARACTERES)
     return nombre + ".txt"
 
 
-def crear_archivo():
-    if not os.path.exists(CARPETA):
-        os.mkdir(CARPETA)
+def crear_archivo(carpeta):
+    if not os.path.exists(carpeta):
+        os.makedirs(carpeta)
 
     creado = False
     while not creado:
-        ruta = os.path.join(CARPETA, generar_nombre())
+        ruta = os.path.join(carpeta, generar_nombre())
         if not os.path.exists(ruta):
             with open(ruta, "w"):
                 pass
@@ -27,6 +27,11 @@ def crear_archivo():
     return ruta
 
 
+def crear_archivos(carpeta, cantidad):
+    for i in range(cantidad):
+        ruta = crear_archivo(carpeta)
+        print(f"Archivo creado: {ruta}")
+
+
 if __name__ == '__main__':
-    ruta = crear_archivo()
-    print(f"Archivo creado: {ruta}")
+    crear_archivos(sys.argv[1], int(sys.argv[2]))
