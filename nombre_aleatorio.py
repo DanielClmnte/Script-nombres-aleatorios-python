@@ -34,4 +34,19 @@ def crear_archivos(carpeta, cantidad):
 
 
 if __name__ == '__main__':
-    crear_archivos(sys.argv[1], int(sys.argv[2]))
+    if len(sys.argv) != 3:
+        print("Uso: python3 nombre_aleatorio.py <ruta> <cantidad>")
+        sys.exit(1)
+
+    ruta = sys.argv[1]
+    cantidad = sys.argv[2]
+
+    if ruta == "":
+        print("Tienes que introducir una ruta")
+        sys.exit(1)
+
+    if not cantidad.isdigit():
+        print("La cantidad tiene que ser un número")
+        sys.exit(1)
+
+    crear_archivos(ruta, int(cantidad))
